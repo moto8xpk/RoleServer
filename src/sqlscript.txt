@@ -1,0 +1,176 @@
+create table line_detail(
+id int NOT NULL AUTO_INCREMENT,
+line_name varchar(255),
+PRIMARY KEY (id)
+)
+
+create table tree_structure_detail(
+id int NOT NULL AUTO_INCREMENT,
+structure_name varchar(255),
+PRIMARY KEY (id)
+)
+
+
+
+create table line_temp(
+id int NOT NULL AUTO_INCREMENT,
+line_id int,
+tree_id int,
+PRIMARY KEY (id),
+FOREIGN KEY (line_id) REFERENCES line_detail(id),
+FOREIGN KEY (tree_id) REFERENCES tree_structure_detail(id)
+)
+
+create table tag_detail(
+id int NOT NULL AUTO_INCREMENT,
+tag_name varchar(255),
+PRIMARY KEY (id)
+)
+
+create table tag_table(
+id int NOT NULL AUTO_INCREMENT,
+head_id int,
+tail_id int,
+tree_id int,
+PRIMARY KEY (id),
+FOREIGN KEY (tree_id) REFERENCES tree_structure_detail(id),
+FOREIGN KEY (head_id) REFERENCES tag_detail(id),
+FOREIGN KEY (tail_id) REFERENCES tag_detail(id)
+)
+
+create table info_table(
+id int NOT NULL AUTO_INCREMENT,
+tag_id int,
+career_progression text,
+domain_roles text,
+projects text,
+responsibilites text,
+PRIMARY KEY (id),
+FOREIGN KEY (tag_id) REFERENCES tag_detail(id)
+)
+
+INSERT INTO line_detail (line_name)
+VALUES ("BE-ES");
+
+INSERT INTO line_detail (line_name)
+VALUES ("BE-BS");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("CC");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("CM");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("AE");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("Hardware");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("AS");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("NE-EM");
+
+INSERT INTO tree_structure_detail (structure_name)
+VALUES ("PS-EC");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Member Engineering");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Architect");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("DQA");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("SQM");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Subject Matter Expert");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Principal Consultant");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Principal Technologist");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Program Manager");
+
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Engineering Manager");
+
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Technical Lead");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("SW Delivery Manager");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Product Manager");
+
+INSERT INTO tag_detail (tag_name)
+VALUES ("Team Lead");
+
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,1);
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,2);
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,3);
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,4);
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,5);
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,6);
+INSERT INTO line_temp (line_id,tree_id)
+VALUES (1,7);	
+
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (1,2,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (2,3,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (3,4,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (2,5,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (5,6,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (6,8,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (8,9,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (2,7,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (7,6,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (7,8,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (1,10,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (10,11,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (2,11,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (1,11,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (11,12,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (12,13,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (1,13,7);
+INSERT INTO tag_table (head_id,tail_id,tree_id)
+VALUES (13,9,7);
+
+INSERT INTO info_table (tag_id,career_progression,domain_roles,projects,responsibilites)
+VALUES (2,"Subject Matter,Technical Lead,Principal Technologist,Product Manager,SW Delivery Manager,Team Lead"
+,"SWSD,P-Res,P-Res P,FnD,Sr. FnD,SW-Architect,Sr. SW-Architect,Safety Manager"
+,"P1-P2,P3-P4,P2-P3,P2"
+,"Category C,D,E;Category A,B,C;Package Responsible;Package Proxy Responsible;EWB;IDN & EWB (Regional Responsible);Analysis of SW Tools for PS-EC;TBD;Functional Safety Assessment across projects");
